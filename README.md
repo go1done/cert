@@ -73,6 +73,7 @@ Commands:
         --timeout=5s          Timeout for connecting to remote server (can be '5m', '1s', etc).
     -m, --pem                 Write output as PEM blocks instead of human-readable format.
     -j, --json                Write output as machine-readable JSON format.
+		--localIP=LOCALIP     Local IP address to connect remote.
 
   verify --name=NAME [<flags>] [<file>]
     Verify a certificate chain from file/stdin against a name.

@@ -120,10 +120,12 @@ func GetConnectionState(startTLSType, connectName, connectTo, identity, clientCe
 	var dialer Dialer = &net.Dialer{
 		Timeout:  timeout,
 		Deadline: time.Now().Add(timeout),
-	}
-
-	if len(localIP) > 0 {
-		dialer.(*net.Dialer).LocalAddr = &net.TCPAddr{IP: net.ParseIP(localIP)}
+		LocalAddr: func() *net.TCPAddr {
+			if len(localIP) > 0 {
+				return &net.TCPAddr{IP: net.ParseIP(localIP)}
+			}
+			return nil
+		}(),
 	}
 
 	// Never take longer than timeout
